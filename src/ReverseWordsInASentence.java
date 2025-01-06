@@ -38,7 +38,7 @@ public class ReverseWordsInASentence {
 
             if (currentChar.matches("\\s")) {
                 if (!currentWord.isEmpty()) {
-                    //this if condition IS necessary as when we have consecutive whitespace it will will save it in the
+                    //this if condition IS necessary as when we have consecutive whitespace it will save it in the
                     //arrayList and we want to avoid that
                     wordsAsList.add(currentWord);
                     currentWord = "";
