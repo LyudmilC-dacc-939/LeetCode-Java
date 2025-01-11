@@ -21,7 +21,7 @@ public class SmallestMissingPositiveInteger {
     //Solve it in O(n) time and constant space.
 
     public static void main(String[] args) {
-        int[] arr = {3, 4, -1, 17, 1, 2};
+        int[] arr = {3, 4, -1, 17, 1, 2, 5};
         int smallestMissingPositiveNumber = 1;
         boolean isSmallestPositiveInt = false;
 
@@ -33,9 +33,13 @@ public class SmallestMissingPositiveInteger {
         do {
             if (setOfNums.contains(smallestMissingPositiveNumber)) {
                 smallestMissingPositiveNumber++;
+            } else {
+                isSmallestPositiveInt = true;
             }
-            isSmallestPositiveInt = true;
         } while (!isSmallestPositiveInt);
+
+        System.out.println("Smallest missing positive number is: " + smallestMissingPositiveNumber);
+
       /*  //Wrong Solution:
         int smallestPositiveNumber = 0;
         int secondSmallestPositiveNumber = 0;
@@ -52,8 +56,6 @@ public class SmallestMissingPositiveInteger {
                 }
 
             }*/
-
     }
-
 }
 

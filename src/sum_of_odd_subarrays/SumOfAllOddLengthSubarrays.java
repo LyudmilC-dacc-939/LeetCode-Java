@@ -1,3 +1,5 @@
+package sum_of_odd_subarrays;
+
 public class SumOfAllOddLengthSubarrays {
     /*
     Medium 1: Sum of All Odd-Length Subarrays

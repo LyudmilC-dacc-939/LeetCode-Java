@@ -1,3 +1,5 @@
+package sum_of_odd_subarrays;
+
 import java.util.stream.IntStream;
 
 public class SumOfAllOddLengthSubarraysStreams {
