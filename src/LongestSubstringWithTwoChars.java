@@ -19,7 +19,7 @@ public class LongestSubstringWithTwoChars {
     //s consists of English letters only.
 
     public static void main(String[] args) {
-        String s = "eeccebaec";
+        String s = "caacaaab";
 
         char[] stringToCharArray = s.toCharArray();
         Set<Character> uniqueCharacters = new LinkedHashSet<>();
@@ -41,10 +41,9 @@ public class LongestSubstringWithTwoChars {
                 finalString.append(ch);
             }
             if (!s.contains(finalString)) {
-                finalString.delete(finalString.length()-1);
+                finalString.deleteCharAt(finalString.length() - 1);
             }
         }
-
 
         System.out.println(finalString.length());
         System.out.println(finalString);
