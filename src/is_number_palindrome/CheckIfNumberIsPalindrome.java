@@ -1,3 +1,5 @@
+package is_number_palindrome;
+
 public class CheckIfNumberIsPalindrome {
 
     //Very Easy: Check if a Number is Palindrome
