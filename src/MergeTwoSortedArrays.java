@@ -22,14 +22,21 @@ public class MergeTwoSortedArrays {
         System.out.println(sortAndMergeArrays(new int[]{6, 10, 12}, new int[]{5, 3, 17}));
     }
 
-    static List<Integer> sortAndMergeArrays(int[] list1, int[] list2) {
-
+    static List<Integer> sortAndMergeArrays(int[] array, int[] array2) {
+        //Using insertion sort
         List<Integer> mergedList = new ArrayList<>();
 
-        for (int number : list1) {
+        int[] sortedArr = Arrays.stream(array)
+                .sorted()
+                .toArray();
+        int[] sortedArr2 = Arrays.stream(array2)
+                .sorted()
+                .toArray();
+
+        for (int number : sortedArr) {
             mergedList.add(number);
         }
-        for (int number : list2) {
+        for (int number : sortedArr2) {
             mergedList.add(number);
         }
 
