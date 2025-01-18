@@ -27,16 +27,18 @@ public class RemoveDuplicatesFromSortedArray {
 
     static List<Integer> removeDuplicates(int[] nums) {
         int counter = 0;
-        List<Integer> listWithRemovedDuplicates = Arrays.stream(nums).boxed().toList();
-        for (int i = 0; i <= listWithRemovedDuplicates.size(); i++) {
-            for (int j = i + 1; j <= listWithRemovedDuplicates.size(); j++) {
-                if (Objects.equals(listWithRemovedDuplicates.get(i), listWithRemovedDuplicates.get(j))) {
-                    counter++;
-                }
+        List<Integer> listWithRemovedDuplicates = new ArrayList<>(Arrays.stream(nums).boxed().toList());
+        for (int i = 0; i < listWithRemovedDuplicates.size() - 1; i++) {
+
+            if (Objects.equals(listWithRemovedDuplicates.get(i), listWithRemovedDuplicates.get(i + 1))) {
+                counter++;
                 if (counter == 2) {
-                    listWithRemovedDuplicates.remove(j);
-                    counter = 0;
+                    listWithRemovedDuplicates.remove(i + 1);
+                    counter = 1;
+                    i--;
                 }
+            } else {
+                counter = 0;
             }
         }
         return listWithRemovedDuplicates;
