@@ -1,3 +1,5 @@
+package group_anagrams;
+
 import java.util.*;
 
 public class GroupAnagrams {
