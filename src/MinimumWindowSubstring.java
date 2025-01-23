@@ -1,4 +1,4 @@
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 public class MinimumWindowSubstring {
@@ -20,30 +20,69 @@ public class MinimumWindowSubstring {
     //1 <= len(s), len(t) <= 10^5
 
     public static void main(String[] args) {
+        System.out.println(minimumWindowSubstring("abcdefg", "gfa"));
         System.out.println(minimumWindowSubstring("ADOBECODEBANC", "ABC"));
         System.out.println(minimumWindowSubstring("kropotkin", "pti"));
+        System.out.println(minimumWindowSubstring("acbbaca", "aba"));
     }
 
-    static String minimumWindowSubstring(String mainString, String substring) {
-        char[] mainStringToCharArray = mainString.toCharArray();
-        Map<Integer, Character> collectedString = new LinkedHashMap<>();
-        int lettersInARow = -1;
-
-        for (char character : mainStringToCharArray) {
-            if (substring.contains(Character.toString(character))) {
-                lettersInARow++;
-
-            } else {
-                lettersInARow = -1;
-            }
-            if (lettersInARow > -1) {
-                collectedString.put(lettersInARow, character);
-            }
+    static String minimumWindowSubstring(String s, String t) {
+        if (s == null || t == null || s.length() < t.length()) {
+            return "";
         }
-        StringBuilder result = new StringBuilder();
-        for (Character value : collectedString.values()) {
-            result.append(value);
+
+        Map<Character, Integer> tFreq = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            tFreq.put(c, tFreq.getOrDefault(c, 0) + 1);
         }
-        return result.toString();
+
+        int left = 0, right = 0, minLength = Integer.MAX_VALUE, matchCount = 0;
+        int startIndex = -1;
+        Map<Character, Integer> windowFreq = new HashMap<>();
+
+        while (right < s.length()) {
+            char currentChar = s.charAt(right);
+            windowFreq.put(currentChar, windowFreq.getOrDefault(currentChar, 0) + 1);
+
+            if (tFreq.containsKey(currentChar) && windowFreq.get(currentChar).equals(tFreq.get(currentChar))) {
+                matchCount++;
+            }
+
+            while (matchCount == tFreq.size()) {
+                if (right - left + 1 < minLength) {
+                    minLength = right - left + 1;
+                    startIndex = left;
+                }
+
+                char leftChar = s.charAt(left);
+                windowFreq.put(leftChar, windowFreq.get(leftChar) - 1);
+
+                if (tFreq.containsKey(leftChar) && windowFreq.get(leftChar) < tFreq.get(leftChar)) {
+                    matchCount--;
+                }
+
+                left++;
+            }
+
+            right++;
+        }
+
+        if (startIndex == -1) {
+            int firstOccurrence = Integer.MAX_VALUE;
+            int lastOccurrence = Integer.MIN_VALUE;
+
+            for (char c : t.toCharArray()) {
+                int index = s.indexOf(c);
+                if (index == -1) {
+                    return "";
+                }
+                firstOccurrence = Math.min(firstOccurrence, index);
+                lastOccurrence = Math.max(lastOccurrence, s.lastIndexOf(c));
+            }
+            return s.substring(firstOccurrence, lastOccurrence + 1);
+        }
+
+        return s.substring(startIndex, startIndex + minLength);
     }
 }
+
