@@ -33,6 +33,5 @@ public class FindMedianInAStream {
         System.out.println(medianFinder.findMedian());
         medianFinder.addNum(3);
         System.out.println(medianFinder.findMedian());
-
     }
 }
