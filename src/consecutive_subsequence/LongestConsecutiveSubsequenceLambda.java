@@ -1,7 +1,6 @@
 package consecutive_subsequence;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class LongestConsecutiveSubsequenceLambda {
     public static int longestConsecutive(int[] arr) {
