@@ -52,5 +52,4 @@ public class CountBinarySubstring {
         System.out.println(listOfSubstrings);
         System.out.println(numberOfSubstring);
     }
-
 }
