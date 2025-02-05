@@ -1,6 +1,5 @@
 package observer_design_pattern;
 
-import java.util.List;
 
 public class ConcreteSubscriber implements Subscriber {
     private final String username;

@@ -10,17 +10,21 @@ public class ObserverDesignPattern {
     //Implement methods subscribe(subscriber), unsubscribe(subscriber), and notify(event).
 
     public static void main(String[] args) {
-        ConcreteSubscriber concreteSubscriber1 = new ConcreteSubscriber();
-        concreteSubscriber1.setUsername("Donna");
 
-        ConcreteSubscriber concreteSubscriber2 = new ConcreteSubscriber();
-        concreteSubscriber1.setUsername("Michael");
+        Publisher publisher = new Publisher();
 
-        ConcreteSubscriber concreteSubscriber3 = new ConcreteSubscriber();
-        concreteSubscriber1.setUsername("wickey");
+        Subscriber user1 = new ConcreteSubscriber("Alice");
+        Subscriber user2 = new ConcreteSubscriber("Bob");
 
-        Event event1 = new Event();
-        Event event2 = new Event();
+        publisher.subscribe(user1);
+        publisher.subscribe(user2);
 
+        Event event1 = new Event("New blog post published!");
+        publisher.notify(event1);
+
+        publisher.unsubscribe(user2);
+
+        Event event2 = new Event("Live stream starting now!");
+        publisher.notify(event2);
     }
 }
